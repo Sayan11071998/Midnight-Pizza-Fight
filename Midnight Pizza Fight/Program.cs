@@ -2,95 +2,75 @@
 
 class Player
 {
-    // Variables
     private int health = 100;
-    private int maxHealth = 100;
     private int attackDamage = 20;
     private int healingCapacity = 15;
+    private int maxHealth = 100;
 
     public int Health
     {
-        // GETTER
-        get
-        {
-            return health;
-        }
-        // SETTER
+        get { return health; }
+
         private set
         {
+            // If the value provided is negative, store zero instead
             if (value < 0)
                 health = 0;
             else if (value > maxHealth)
+            {
                 health = maxHealth;
+            }
+
             else
-                health = value;
+            {
+                health = value; // Otherwise, store the provided value
+            }
+
         }
     }
 
-    // Default Constructor
+
     public Player()
     {
         SpawnPlayer();
+        DisplayPlayerStats();
     }
 
-    // Functions
-    private void SpawnPlayer()
-    {
-        Console.WriteLine("\n==================================================");
-        Console.WriteLine(" 🍕 DOUGH MASTER: GUARDIAN OF THE GOLDEN CRUST 🍕    ");
-        Console.WriteLine("\n==================================================");
-        Console.WriteLine("Dough Master: That scoundrel won't escape with my creation!\n");
-    }
 
     private int generateRandomNumberInRange(int min, int max)
     {
         Random rand = new Random();
-        int RandomNumber = rand.Next(min, max + 1);
-        return RandomNumber;
+        int randomNumber = rand.Next(min, max + 1);
+        return randomNumber;
     }
 
     public int CalculateTotalDamage()
     {
         int additionalDamage = generateRandomNumberInRange(5, 15);
         int totalDamage = attackDamage + additionalDamage;
+
         return totalDamage;
     }
-
-    public void ShowAttackDamage(int totalDamage)
-    {
-        Console.WriteLine("             🍕 PIZZA BATTLE 🍕                   ");
-        Console.WriteLine("============================================");
-        Console.WriteLine("Dough Master's attack dealt " + totalDamage + " damage! 🥊");
-        Console.WriteLine("--------------------------------------------");
-    }
-
-    public void TakeDamage(int damageRecieved) => health -= damageRecieved;
 
     public int CalculateTotalHeal()
     {
         int additionalHeal = generateRandomNumberInRange(10, 20);
         int totalHeal = healingCapacity + additionalHeal;
+
         return totalHeal;
     }
 
+    public void TakeDamage(int damageRecieved) => Health -= damageRecieved;
+
+
     public void Heal(int healAmount) => Health += healAmount;
 
-    public void ShowHeal(int healAmount)
+    private void SpawnPlayer()
     {
-        if(Health >= maxHealth)
-        {
-            Console.WriteLine("             🍕 PIZZA BATTLE 🍕                   ");
-            Console.WriteLine("============================================");
-            Console.WriteLine("     Dough Master is bursting with energy! 🚀    ");
-            Console.WriteLine("--------------------------------------------");
-        }
-        else
-        {
-            Console.WriteLine("             🍕 PIZZA BATTLE 🍕                   ");
-            Console.WriteLine("============================================");
-            Console.WriteLine("Dough Master's heal restored " + healAmount + " hp! ☕");
-            Console.WriteLine("--------------------------------------------");
-        }
+        Console.WriteLine("\n==================================================");
+        Console.WriteLine("   🍕 DOUGH MASTER: GUARDIAN OF THE GOLDEN CRUST 🍕   ");
+        Console.WriteLine("==================================================\n");
+        Console.WriteLine("\nDough Master: That scoundrel won't escape with my creation!\n");
     }
 
     public void DisplayPlayerStats()
@@ -105,98 +85,123 @@ class Player
         Console.WriteLine("Espresso Shot Boost ☕: 10 to 20");
     }
 
+    public void ShowAttackDamage(int totalDamage)
+    {
+        Console.WriteLine("             🍕 PIZZA BATTLE 🍕                   ");
+        Console.WriteLine("============================================");
+        Console.WriteLine("Dough Master's attack dealt " + totalDamage + " damage! 🥊");
+        Console.WriteLine("--------------------------------------------");
+    }
+
+    public void ShowHeal(int healAmount)
+    {
+        if (Health >= maxHealth)
+        {
+            Console.WriteLine("             🍕 PIZZA BATTLE 🍕                   ");
+            Console.WriteLine("============================================");
+            Console.WriteLine("     Dough Master is bursting with energy! 🚀    ");
+            Console.WriteLine("--------------------------------------------");
+        }
+        else
+        {
+            Console.WriteLine("             🍕 PIZZA BATTLE 🍕                   ");
+            Console.WriteLine("============================================");
+            Console.WriteLine("Dough Master's heal restored " + healAmount + " hp! ☕");
+            Console.WriteLine("--------------------------------------------");
+        }
+    }
 }
 
 class Enemy
 {
-    // Variables
     private int health = 150;
-    private int maxDamage = 15;
+    private int attackDamage = 15;
     private int maxHealth = 150;
+
 
     public int Health
     {
-        // GETTER
-        get
+        set
         {
-            return health;
-        }
-        // SETTER
-        private set
-        {
-            if (value < 0)
-                health= 0;
+            // If the value provided is negative, store zero instead
+            if (value <= 0)
+                health = 0;
             else if (value > maxHealth)
                 health = maxHealth;
             else
-                health= value;
+                health = value; // Otherwise, store the provided value
         }
+        get { return health; }
     }
 
-    // Default Constructor
     public Enemy()
     {
         SpawnEnemy();
-    }
-
-    // Functions
-    private void SpawnEnemy()
-    {
-        Console.WriteLine("\n==================================================");
-        Console.WriteLine("   🦹 CRUST BANDIT: NEMESIS OF ITALIAN CUISINE 🦹  ");
-        Console.WriteLine("\n==================================================");
-        Console.WriteLine("Crust Bandit: The Delectable pizza is mine now!");
-        Console.WriteLine("You'll never catch me, flour face!\n");
+        DisplayEnemyStats();
     }
 
     private int generateRandomNumberInRange(int min, int max)
     {
         Random rand = new Random();
-        int RandomNumber = rand.Next(min, max + 1);
-        return RandomNumber;
+
+        int randomNumber = rand.Next(min, max + 1);
+        return randomNumber;
     }
 
-    public int CalculateTotalDamage()
+
+    private void SpawnEnemy()
     {
-        int additionalDamage = generateRandomNumberInRange(5, 15);
-        int totalDamage = maxDamage + additionalDamage;
-        return totalDamage;
+        Console.WriteLine("\n==================================================");
+        Console.WriteLine("   🦹 CRUST BANDIT: NEMESIS OF ITALIAN CUISINE 🦹  ");
+        Console.WriteLine("==================================================\n");
+        Console.WriteLine("\nCrust Bandit: \"This delectable pizza is mine now!");
+        Console.WriteLine("You'll never catch me, flour face!\"\n");
+    }
+
+    public void DisplayEnemyStats()
+    {
+        Console.WriteLine("\n--------------------------------------------------");
+        Console.WriteLine("            CRUST BANDIT'S STATS                ");
+        Console.WriteLine("--------------------------------------------------");
+        Console.WriteLine("Health: " + Health + "/" + maxHealth);
+        Console.WriteLine("Sneaky Jab 💪: " + attackDamage);
+        Console.WriteLine("Dirty Trick Bonus 🪄: 3 to 12");
     }
 
     public void ShowAttackDamage(int totalDamage)
     {
-        Console.WriteLine("             🍕 PIZZA BATTLE 🍕                   ");
+        Console.WriteLine("Crust Bandit's sneak attack dealt " + totalDamage + " damage! 💥");
         Console.WriteLine("============================================");
-        Console.WriteLine("Crust Bandit's attack dealt " + totalDamage + " damage! 🥊");
-        Console.WriteLine("--------------------------------------------");
     }
 
-    public void TakeDamage(int damageRecieved) => health -= damageRecieved;
-    
-    public void DisplayEnemyStats()
+    public int CalculateTotalDamage()
     {
-        Console.WriteLine("\n---------------------------------------------------");
-        Console.WriteLine("              CRUST BANDIT'S STATS                ");
-        Console.WriteLine("---------------------------------------------------");
-        Console.WriteLine("Health: " + Health + "/" + maxHealth);
-        Console.WriteLine("Sneaky Jab: " + maxDamage);
-        Console.WriteLine("Sneaky Jab Boost 🌪️: 5 to 15");
+        int additionalDamage = generateRandomNumberInRange(3, 12);
+        int totalDamage = attackDamage + additionalDamage;
+
+        return totalDamage;
     }
 
+    public void TakeDamage(int damageRecieved) => Health -= damageRecieved;
 }
 
 class Game
 {
+    bool isGameExited;
     Player player;
     Enemy enemy;
 
-    public void SpawnCharacters()
+    public void GameLoop()
     {
-        player = new Player();
-        enemy = new Enemy();
+        while (!isGameExited)
+        {
+            DisplayGameStory();
+            StartMenu();
+            if (!isGameExited)
+                RestartMenu();
+        }
     }
-
-    public void DisplayGameStory()
+    private void DisplayGameStory()
     {
         Console.Clear();
         Console.WriteLine("\n==================================================");
@@ -205,7 +210,7 @@ class Game
         Console.WriteLine("\nIn a bustling pizzeria on a busy Friday night...");
         Console.WriteLine("--------------------------------------------------");
         Console.WriteLine("You, the Dough Master, created your magnum opus -");
-        Console.WriteLine("the perfect pizza. Suddenly, a sneaky Crust Bandit");
+        Console.WriteLine("the perfect pizza🤌  Suddenly, a sneaky Crust Bandit");
         Console.WriteLine("snatches your masterpiece!");
         Console.WriteLine("--------------------------------------------------");
         Console.WriteLine("\nFueled by passion for your craft, you give chase...");
@@ -216,7 +221,83 @@ class Game
         Console.WriteLine("your stolen slice!");
         Console.WriteLine("--------------------------------------------------");
         Console.WriteLine("                      FIGHT!                      \n");
+
     }
+
+    private void StartMenu()
+    {
+        Console.WriteLine("==================================================");
+        Console.WriteLine("     Press S to Get Your Masterpiece BACK...     ");
+        Console.WriteLine("     Press any other key to exit the game   ");
+        Console.WriteLine("==================================================");
+
+        ProcessStartMenuInput();
+    }
+
+    private void RestartMenu()
+    {
+        Console.WriteLine("\n==================================================");
+        Console.WriteLine("     Press R to Restart...     ");
+        Console.WriteLine("     Press any other key to exit the game   ");
+        Console.WriteLine("==================================================");
+
+        ProcessRestartMenuInput();
+    }
+
+    private string GetInput()
+    {
+        string input = Console.ReadLine();
+        return input.ToUpper();
+    }
+
+    private void ProcessStartMenuInput()
+    {
+        string startGame = GetInput();
+
+        if (startGame == "S")
+        {
+            Console.Clear();
+            SpawnCharacters();
+            ProcessBattleLoop();
+        }
+        else
+        {
+            ExitGame();
+        }
+    }
+
+    private void ProcessRestartMenuInput()
+    {
+        string restartGame = GetInput();
+
+        if (restartGame == "R")
+        {
+            isGameExited = false;
+        }
+        else
+        {
+            ExitGame();
+        }
+    }
+
+    private void SpawnCharacters()
+    {
+        //Initialize Player and Enemy objects
+        player = new();
+        enemy = new();
+    }
+
+    private void ProcessBattleLoop()
+    {
+        do
+        {
+            ShowBattleOptions();
+            ProcessBattleInput();
+
+        } while (AreCharactersAlive());
+    }
+
+    private bool AreCharactersAlive() => player.Health > 0 && enemy.Health > 0;
 
     private void ShowBattleOptions()
     {
@@ -238,78 +319,36 @@ class Game
         switch (playerChoice)
         {
             case "A":
-                // Player's Turn
+                //Player's Turn
                 PlayerAttack();
                 if (CheckGameOver())
                     break;
-
-                // Enemy's Turn
+                //Enemy's Turn
                 EnemyAttack();
+
                 if (CheckGameOver())
                     break;
 
                 DisplayCharacterStats();
                 break;
-            
+
             case "H":
-                // Player's Turn
+                //Player's Turn
                 PlayerHeal();
-                
-                // Enemy's Turn
+                //Enemy's Turn
                 EnemyAttack();
 
-                if(CheckGameOver())
+                if (CheckGameOver())
                     break;
 
                 DisplayCharacterStats();
+
                 break;
-            
+
             default:
                 InvalidInput();
                 break;
         }
-    }
-
-    public void ProcessBattleLoop()
-    {
-        do
-        {
-            ShowBattleOptions();
-            ProcessBattleInput();
-        } while (AreCharactersAlive());
-    }
-
-    private string GetInput()
-    {
-        string input = Console.ReadLine();
-        return input.ToUpper();
-    }
-
-    private void PlayerAttack()
-    {
-        int totalDamage = player.CalculateTotalDamage();
-        enemy.TakeDamage(totalDamage);
-        player.ShowAttackDamage(totalDamage);
-    }
-
-    private void PlayerHeal()
-    {
-        int totalHeal = player.CalculateTotalHeal();
-        player.Heal(totalHeal);
-        player.ShowHeal(totalHeal);
-    }
-
-    private void EnemyAttack()
-    {
-        int totalDamage = enemy.CalculateTotalDamage();
-        player.TakeDamage(totalDamage);
-        enemy.ShowAttackDamage(totalDamage);
-    }
-
-    private void DisplayCharacterStats()
-    {
-        player.DisplayPlayerStats();
-        enemy.DisplayEnemyStats();
     }
 
     private bool CheckGameOver()
@@ -319,14 +358,36 @@ class Game
             ShowGameWin();
             return true;
         }
-
         if (player.Health <= 0)
         {
             ShowGameLose();
             return true;
         }
-
         return false;
+    }
+
+    private void PlayerAttack()
+    {
+        int totalDamage = player.CalculateTotalDamage();
+        enemy.TakeDamage(totalDamage);
+        player.ShowAttackDamage(totalDamage);
+
+    }
+
+    private void EnemyAttack()
+    {
+        int totalDamage = enemy.CalculateTotalDamage();
+        player.TakeDamage(totalDamage);
+        enemy.ShowAttackDamage(totalDamage);
+
+    }
+
+    private void PlayerHeal()
+    {
+        int totalHeal = player.CalculateTotalHeal();
+        player.Heal(totalHeal);
+        player.ShowHeal(totalHeal);
+
     }
 
     private void ShowGameWin()
@@ -360,10 +421,22 @@ class Game
         Console.WriteLine("==================================================");
     }
 
-    private void InvalidInput() => Console.WriteLine("Invalid Input! , please give a valid input");
 
-    private bool AreCharactersAlive() => player.Health > 0 && enemy.Health > 0;
+    private void ExitGame()
+    {
+        Console.Clear();
+        Console.WriteLine("Thanks for playing Midnight Pizza Fight!😄");
+        isGameExited = true;
+    }
 
+    private void InvalidInput() => Console.WriteLine("Invalid Input! , please give valid input");
+
+
+    private void DisplayCharacterStats()
+    {
+        player.DisplayPlayerStats();
+        enemy.DisplayEnemyStats();
+    }
 }
 
 class Program
@@ -371,8 +444,6 @@ class Program
     public static void Main()
     {
         Game game = new Game();
-        game.DisplayGameStory();
-        game.SpawnCharacters();
-        game.ProcessBattleLoop();
+        game.GameLoop();
     }
 }
