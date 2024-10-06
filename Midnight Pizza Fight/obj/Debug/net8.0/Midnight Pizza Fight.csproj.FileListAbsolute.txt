@@ -1,0 +1,15 @@
+D:\Git\Midnight-Pizza-Fight\Midnight Pizza Fight\bin\Debug\net8.0\Midnight Pizza Fight.exe
+D:\Git\Midnight-Pizza-Fight\Midnight Pizza Fight\bin\Debug\net8.0\Midnight Pizza Fight.deps.json
+D:\Git\Midnight-Pizza-Fight\Midnight Pizza Fight\bin\Debug\net8.0\Midnight Pizza Fight.runtimeconfig.json
+D:\Git\Midnight-Pizza-Fight\Midnight Pizza Fight\bin\Debug\net8.0\Midnight Pizza Fight.dll
+D:\Git\Midnight-Pizza-Fight\Midnight Pizza Fight\bin\Debug\net8.0\Midnight Pizza Fight.pdb
+D:\Git\Midnight-Pizza-Fight\Midnight Pizza Fight\obj\Debug\net8.0\Midnight Pizza Fight.GeneratedMSBuildEditorConfig.editorconfig
+D:\Git\Midnight-Pizza-Fight\Midnight Pizza Fight\obj\Debug\net8.0\Midnight Pizza Fight.AssemblyInfoInputs.cache
+D:\Git\Midnight-Pizza-Fight\Midnight Pizza Fight\obj\Debug\net8.0\Midnight Pizza Fight.AssemblyInfo.cs
+D:\Git\Midnight-Pizza-Fight\Midnight Pizza Fight\obj\Debug\net8.0\Midnight Pizza Fight.csproj.CoreCompileInputs.cache
+D:\Git\Midnight-Pizza-Fight\Midnight Pizza Fight\obj\Debug\net8.0\Midnight Pizza Fight.sourcelink.json
+D:\Git\Midnight-Pizza-Fight\Midnight Pizza Fight\obj\Debug\net8.0\Midnight Pizza Fight.dll
+D:\Git\Midnight-Pizza-Fight\Midnight Pizza Fight\obj\Debug\net8.0\refint\Midnight Pizza Fight.dll
+D:\Git\Midnight-Pizza-Fight\Midnight Pizza Fight\obj\Debug\net8.0\Midnight Pizza Fight.pdb
+D:\Git\Midnight-Pizza-Fight\Midnight Pizza Fight\obj\Debug\net8.0\Midnight Pizza Fight.genruntimeconfig.cache
+D:\Git\Midnight-Pizza-Fight\Midnight Pizza Fight\obj\Debug\net8.0\ref\Midnight Pizza Fight.dll
