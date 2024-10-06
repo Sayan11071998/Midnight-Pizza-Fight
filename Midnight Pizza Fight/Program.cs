@@ -18,9 +18,9 @@ class Player
         // SETTER
         private set
         {
-            if(value < 0)
+            if (value < 0)
                 health = 0;
-            else if(value > maxHealth)
+            else if (value > maxHealth)
                 health = maxHealth;
             else
                 health = value;
@@ -38,8 +38,50 @@ class Player
     {
         Console.WriteLine("\n==================================================================");
         Console.WriteLine("         🍕 DOUGH MASTER: GUARDIAN OF THE GOLDEN CRUST 🍕           ");
+        Console.WriteLine("==================================================================");
+        Console.WriteLine("Dough Master: That scoundrel won't escape with my creation!\n");
+    }
+}
+
+class Enemy
+{
+    // Variables
+    private int health = 150;
+    private int maxDamage = 15;
+    private int maxHealth = 150;
+
+    public int Health
+    {
+        // GETTER
+        get
+        {
+            return health;
+        }
+        // SETTER
+        private set
+        {
+            if (value < 0)
+                health= 0;
+            else if (value > maxHealth)
+                health = maxHealth;
+            else
+                health= value;
+        }
+    }
+
+    // Default Constructor
+    public Enemy()
+    {
+        SpawnEnemy();
+    }
+
+    // Functions
+    private void SpawnEnemy()
+    {
         Console.WriteLine("\n==================================================================");
-        Console.WriteLine("\nDough Master: That scoundrel won't escape with my creation!\n");
+        Console.WriteLine("          🦹 CRUST BANDIT: NEMESIS OF ITALIAN CUISINE 🦹            ");
+        Console.WriteLine("==================================================================");
+        Console.WriteLine("You'll never catch me, flour face!\n");
     }
 }
 
@@ -64,5 +106,6 @@ class Program
 
         //Creating and Spawning the Player Character
         Player player = new Player();
+        Enemy enemy = new Enemy();
     }
 }
