@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Midnight Pizza Fight")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9d00b8a8c976ddfbd6b8d8d778fbdb07a929a58a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4cdcce2e08fe594b048cfa25f87ac82c23a31cc1")]
 [assembly: System.Reflection.AssemblyProductAttribute("Midnight Pizza Fight")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Midnight Pizza Fight")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

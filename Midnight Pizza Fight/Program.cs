@@ -148,6 +148,41 @@ class Enemy
         Console.WriteLine("Crust Bandit: The Delectable pizza is mine now!");
         Console.WriteLine("You'll never catch me, flour face!\n");
     }
+
+    private int generateRandomNumberInRange(int min, int max)
+    {
+        Random rand = new Random();
+        int RandomNumber = rand.Next(min, max + 1);
+        return RandomNumber;
+    }
+
+    public int CalculateTotalDamage()
+    {
+        int additionalDamage = generateRandomNumberInRange(5, 15);
+        int totalDamage = maxDamage + additionalDamage;
+        return totalDamage;
+    }
+
+    public void ShowAttackDamage(int totalDamage)
+    {
+        Console.WriteLine("             🍕 PIZZA BATTLE 🍕                   ");
+        Console.WriteLine("============================================");
+        Console.WriteLine("Crust Bandit's attack dealt " + totalDamage + " damage! 🥊");
+        Console.WriteLine("--------------------------------------------");
+    }
+
+    public void TakeDamage(int damageRecieved) => health -= damageRecieved;
+    
+    public void DisplayEnemyStats()
+    {
+        Console.WriteLine("\n---------------------------------------------------");
+        Console.WriteLine("              CRUST BANDIT'S STATS                ");
+        Console.WriteLine("---------------------------------------------------");
+        Console.WriteLine("Health: " + Health + "/" + maxHealth);
+        Console.WriteLine("Sneaky Jab: " + maxDamage);
+        Console.WriteLine("Sneaky Jab Boost 🌪️: 5 to 15");
+    }
+
 }
 
 class Game
