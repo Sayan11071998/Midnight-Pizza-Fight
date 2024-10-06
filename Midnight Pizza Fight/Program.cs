@@ -218,14 +218,161 @@ class Game
         Console.WriteLine("                      FIGHT!                      \n");
     }
 
+    private void ShowBattleOptions()
+    {
+        Console.WriteLine("\n==================================================");
+        Console.WriteLine("             🍕 PIZZA BATTLE OPTIONS 🍕             ");
+        Console.WriteLine("==================================================");
+        Console.WriteLine("  Choose your action:");
+        Console.WriteLine("    [A] Attack the Crust Bandit 🥊");
+        Console.WriteLine("    [H] Gulp an Espresso Shot ☕");
+        Console.WriteLine("==================================================");
+        Console.Write("  Your choice: ");
+    }
+
+    private void ProcessBattleInput()
+    {
+        string playerChoice = GetInput();
+        Console.Clear();
+
+        switch (playerChoice)
+        {
+            case "A":
+                // Player's Turn
+                PlayerAttack();
+                if (CheckGameOver())
+                    break;
+
+                // Enemy's Turn
+                EnemyAttack();
+                if (CheckGameOver())
+                    break;
+
+                DisplayCharacterStats();
+                break;
+            
+            case "H":
+                // Player's Turn
+                PlayerHeal();
+                
+                // Enemy's Turn
+                EnemyAttack();
+
+                if(CheckGameOver())
+                    break;
+
+                DisplayCharacterStats();
+                break;
+            
+            default:
+                InvalidInput();
+                break;
+        }
+    }
+
+    public void ProcessBattleLoop()
+    {
+        do
+        {
+            ShowBattleOptions();
+            ProcessBattleInput();
+        } while (AreCharactersAlive());
+    }
+
+    private string GetInput()
+    {
+        string input = Console.ReadLine();
+        return input.ToUpper();
+    }
+
+    private void PlayerAttack()
+    {
+        int totalDamage = player.CalculateTotalDamage();
+        enemy.TakeDamage(totalDamage);
+        player.ShowAttackDamage(totalDamage);
+    }
+
+    private void PlayerHeal()
+    {
+        int totalHeal = player.CalculateTotalHeal();
+        player.Heal(totalHeal);
+        player.ShowHeal(totalHeal);
+    }
+
+    private void EnemyAttack()
+    {
+        int totalDamage = enemy.CalculateTotalDamage();
+        player.TakeDamage(totalDamage);
+        enemy.ShowAttackDamage(totalDamage);
+    }
+
+    private void DisplayCharacterStats()
+    {
+        player.DisplayPlayerStats();
+        enemy.DisplayEnemyStats();
+    }
+
+    private bool CheckGameOver()
+    {
+        if (enemy.Health <= 0)
+        {
+            ShowGameWin();
+            return true;
+        }
+
+        if (player.Health <= 0)
+        {
+            ShowGameLose();
+            return true;
+        }
+
+        return false;
+    }
+
+    private void ShowGameWin()
+    {
+        Console.Clear();
+        Console.WriteLine("\n==================================================");
+        Console.WriteLine("           🎉 PIZZA JUSTICE SERVED! 🎉              ");
+        Console.WriteLine("==================================================");
+        Console.WriteLine("The Dough Master has defeated the Crust Bandit!");
+        Console.WriteLine("--------------------------------------------------");
+        Console.WriteLine("The perfect pizza has been reclaimed 🍕           ");
+        Console.WriteLine("The honor of Italian cuisine is restored!         ");
+        Console.WriteLine("--------------------------------------------------");
+        Console.WriteLine("    Bon appétit, and thanks for playing! 👨‍🍳        ");
+        Console.WriteLine("==================================================");
+    }
+
+    private void ShowGameLose()
+    {
+        Console.Clear();
+        Console.WriteLine("\n==================================================");
+        Console.WriteLine("              😭 PIZZA TRAGEDY! 😭                ");
+        Console.WriteLine("==================================================");
+        Console.WriteLine("The Dough Master has been outmaneuvered!           ");
+        Console.WriteLine("--------------------------------------------------");
+        Console.WriteLine("The Crust Bandit escapes with your masterpiece 🏃‍♂️");
+        Console.WriteLine("Your pizzeria's reputation is in shambles 📉     ");
+        Console.WriteLine("--------------------------------------------------");
+        Console.WriteLine("        Thanks for your valiant effort! 🎖️         ");
+        Console.WriteLine("   Perhaps it's time to switch to calzones... 🥟   ");
+        Console.WriteLine("==================================================");
+    }
+
+    private void InvalidInput() => Console.WriteLine("Invalid Input! , please give a valid input");
+
+    private bool AreCharactersAlive() => player.Health > 0 && enemy.Health > 0;
+
 }
 
 class Program
 {
-    static void Main()
+    public static void Main()
     {
         Game game = new Game();
         game.DisplayGameStory();
         game.SpawnCharacters();
+        game.ProcessBattleLoop();
     }
 }
